@@ -1,0 +1,48 @@
+﻿@if (movies == null)
+{
+    <textarea>Loading...</textarea>
+}
+else if (movies.Count == 0)
+{
+    <textarea>There are no movies in the database</textarea>
+}
+else
+{
+    @foreach (var movie in movies)
+    {
+        <p>Title: @movie.Title</p>
+        <p>Release Date: <b>@movie.ReleaseDate.ToString("dd MMM yyyy")</b></p>
+    }
+
+}
+
+
+@code {
+
+    List<Movie> movies;
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        await Task.Delay(3000);
+
+        movies = new List<Movie>()
+    {
+            new Movie(){Title = "The Raid 2", ReleaseDate = new DateTime(2019, 7, 2)},
+            new Movie(){Title = "Dredd", ReleaseDate = new DateTime(2011, 6, 4)},
+            new Movie(){Title = "He-Man", ReleaseDate = new DateTime(1989, 2, 4)},
+        };
+    }
+
+}
+
+
+@*This page is a component.  This can be called in a page and it will carry out its purpose
+    This Componenet uses the Movie entity to create instances of movies.  There is an if statement
+        That will first check if the movies are null (not loaded), if so, it will then check
+        if there are more than 0 movies when Task is loaded.  If there are not message will be displayed
+        if so then the if statement will print each movie's title and release date
+
+        MoviesList is a reusable piece of code that can be reused anywhere in the application
+
+        Try adding <MoviesList /> to any other routed page.  E.g /Counter*@

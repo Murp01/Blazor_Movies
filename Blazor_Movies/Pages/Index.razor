@@ -1,35 +1,10 @@
 ﻿@page "/"
 
 
-<p>Hello, @StringUtilities.CustomToUpper(name)</p>
-
 
 <div>
     <h3>Movie</h3>
-    @if (movies == null)
-    {
-        <textarea>Loading...</textarea>
-    }
-    else
-    {
-        @foreach (var movie in movies)
-        {
-            <p>Title: @((MarkupString)movie.Title)</p>
-            <p>Release Date: <b>@movie.ReleaseDate.ToString("dd MMM yyyy")</b></p>
-        }
-        <br />
-        <br />
-
-
-        @for (var i = 0; i < movies.Count; i++)
-        {
-            <div style="background-color: @(i % 2 == 0 ? "blue" : "red")">
-                <p>@(i+1)) Title: <b>@movies[i].Title</b></p>
-                <p>Release Date: <b>@movies[i].ReleaseDate.ToString("dd MMM yyyy")</b></p>
-            </div>
-
-        }
-    }
+    <MoviesList />
 
 
 </div>
@@ -38,34 +13,6 @@
 
 @code{
 
-    string name = "Paul";
-    List<Movie> movies;
 
-    //Creating a single movie entity
-    Movie TheRaid = new Movie
-    {
-        Title = "The Raid Redemption",
-        ReleaseDate = new DateTime(2013, 7, 2)
-    };
-
-    //Creating list of multiple movies, Declare list above first
-    //Oninitialized ensures they are built upon application starting
-    protected async override Task OnInitializedAsync()
-    {
-        await Task.Delay(3000);
-
-        movies = new List<Movie>()
-        {
-            new Movie(){Title = "<b>The Raid 2</b>", ReleaseDate = new DateTime(2019, 7, 2)},
-            new Movie(){Title = "<i>Dredd</i>", ReleaseDate = new DateTime(2011, 6, 4)},
-            new Movie(){Title = "He-Man", ReleaseDate = new DateTime(1989, 2, 4)},
-        };
-    }
-
-
-    void WriteInLog()
-    {
-        Console.WriteLine("I have been clicked");
-    }
 
 }
