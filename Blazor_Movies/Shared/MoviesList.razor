@@ -1,14 +1,14 @@
-﻿@if (movies == null)
+﻿@if (Movies == null)
 {
     <img src="https://media.giphy.com/media/Hzx59OElruHpC/giphy.gif" />
 }
-else if (movies.Count == 0)
+else if (Movies.Count == 0)
 {
     <textarea>There are no movies in the database</textarea>
 }
 else
 {
-    @foreach (var movie in movies)
+    @foreach (var movie in Movies)
     {
         <p>Title: @movie.Title</p>
         <p>Release Date: <b>@movie.ReleaseDate.ToString("dd MMM yyyy")</b></p>
@@ -19,20 +19,8 @@ else
 
 @code {
 
-    List<Movie> movies;
+    [Parameter] public List<Movie> Movies { get; set; }
 
-
-    protected async override Task OnInitializedAsync()
-    {
-        await Task.Delay(3000);
-
-        movies = new List<Movie>()
-    {
-            new Movie(){Title = "The Raid 2", ReleaseDate = new DateTime(2019, 7, 2)},
-            new Movie(){Title = "Dredd", ReleaseDate = new DateTime(2011, 6, 4)},
-            new Movie(){Title = "He-Man", ReleaseDate = new DateTime(1989, 2, 4)},
-        };
-    }
 
 }
 
@@ -45,4 +33,7 @@ else
 
         MoviesList is a reusable piece of code that can be reused anywhere in the application
 
-        Try adding <MoviesList /> to any other routed page.  E.g /Counter*@
+        Try adding <MoviesList /> to any other routed page.  E.g /Counter
+        The Movies list parameter is used to accept movie properties passed into the MoviesList html
+        tag when it is declared on the page <MoviesList Movies="nameOfMovieListItem" />
+    *@

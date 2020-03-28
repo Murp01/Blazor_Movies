@@ -4,7 +4,10 @@
 
 <div>
     <h3>Movie</h3>
-    <MoviesList />
+
+    @*The below tag uses MoviesList component and makes use of the Movies parameter to pass in
+    the below movies list as the argument*@
+    <MoviesList Movies="movies"/>
 
 
 </div>
@@ -12,7 +15,23 @@
 
 
 @code{
+    private List<Movie> movies;
 
+    protected async override Task OnInitializedAsync()
+    {
+        await Task.Delay(3000);
 
+        movies = new List<Movie>()
+    {
+            new Movie(){Title = "The Raid 2", ReleaseDate = new DateTime(2019, 7, 2)},
+            new Movie(){Title = "Dredd", ReleaseDate = new DateTime(2011, 6, 4)},
+            new Movie(){Title = "He-Man", ReleaseDate = new DateTime(1989, 2, 4)},
+        };
+    }
 
 }
+
+@*The move list that is used as the MovieList parameter's argument can be used as different
+    categories for example we can have an actionMovies list, usrFavList or watched.
+    
+    This could be used for different machines in Endpoint?*@ 
