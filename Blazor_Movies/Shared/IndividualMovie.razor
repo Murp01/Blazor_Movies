@@ -1,0 +1,12 @@
+﻿<div>
+    <p>Title: @Movie.Title</p>
+    <p>Release Date: <b>Movie.ReleaseDate.ToString("dd MMM yyyy")</b></p>
+</div>
+
+
+@code {
+    [Parameter] public Movie Movie { get; set; }
+}
+
+@*This component can be used to print the movie title and release date.  Just type 
+<IndividualMovie Movie="nameOfList"*@
