@@ -6,6 +6,8 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<input type="number" @bind="currentCount" />
+
 <MoviesList Movies="movies"/>
 
 @code {
@@ -31,3 +33,7 @@
     }
 
 }
+
+@*Used databinding in an input box.  The data bind is between the text in the input box and the 
+CurrentCount display.  Changing the count by either clicking on the button or updating the 
+input box will synch the count between eachother*@
