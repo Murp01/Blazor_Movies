@@ -12,10 +12,26 @@
 
 </div>
 
+<div>
+    <h2>Create a Movie</h2>
+
+    @*Even though parameter does not exist for componenet, the component uses arbitrary parameter that
+    allows non-existing parameters*@
+    <DummyTextbox @attributes="dummyTextboxParameters"/>
+    <DummyTextbox placeholder="What yeeeear?" madeupparemter="false"/>
+
+</div>
+
 
 
 @code{
     private List<Movie> movies;
+
+    private Dictionary<string, object> dummyTextboxParameters = new Dictionary<string, object>()
+    {
+        {"placeholder", "new movie name" },
+        {"disabled", "true" }
+    };
 
     protected async override Task OnInitializedAsync()
     {
@@ -34,4 +50,10 @@
 @*The move list that is used as the MovieList parameter's argument can be used as different
     categories for example we can have an actionMovies list, usrFavList or watched.
     
-    This could be used for different machines in Endpoint?*@ 
+    This could be used for different machines in Endpoint?
+    
+    Using a variable dummyTextboxParameters to pass in placeholder and disabled attributes
+    into the declared component - DummyTextBox
+    
+    Below is another DummyTextBox that uses parameters while declared in the tag
+    This has a madeup parameter which can be created as a method*@ 

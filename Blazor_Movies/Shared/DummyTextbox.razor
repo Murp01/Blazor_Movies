@@ -1,0 +1,8 @@
+﻿@*Argument of AdditionalParameters set so it can use non-existant parameters*@
+<input type="text" @attributes="AdditionalParameters" />
+
+@code {
+    //Arbitrary parameter that can capture name of any parameter whether it exists or not
+    [Parameter(CaptureUnmatchedValues = true)] 
+    public IDictionary<string, object> AdditionalParameters { get; set; }
+}
