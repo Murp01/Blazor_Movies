@@ -4,7 +4,8 @@
     @if (DisplayButtons)
     {
         <div>
-            <button @onclick="Delete">Delete</button>
+            @*The Delete button invokes DeleteMovie function to the Movie passed in as arg*@
+            <button @onclick="@(() => DeleteMovie.InvokeAsync(Movie))">Delete</button>
         </div>
     }
 
@@ -15,11 +16,10 @@
 @code {
     [Parameter] public Movie Movie { get; set; }
     [Parameter] public bool DisplayButtons { get; set; } = false;
+    //below parameter has DeleteMovie method passed as an argument and uses it on item in MovieList page
+    [Parameter] public EventCallback<Movie> DeleteMovie { get; set; }
 
-    void Delete()
-    {
-        Console.WriteLine($"Deleting {Movie.Title}");
-    }
+
 }
 
 @*This component can be used to print the movie title and release date.  Just type 
