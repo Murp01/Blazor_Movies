@@ -1,12 +1,30 @@
 ﻿<div>
     <p>Title: @Movie.Title</p>
     <p>Release Date: <b>Movie.ReleaseDate.ToString("dd MMM yyyy")</b></p>
+    @if (DisplayButtons)
+    {
+        <div>
+            <button @onclick="Delete">Delete</button>
+        </div>
+    }
+
+    <br />
 </div>
 
 
 @code {
     [Parameter] public Movie Movie { get; set; }
+    [Parameter] public bool DisplayButtons { get; set; } = false;
+
+    void Delete()
+    {
+        Console.WriteLine($"Deleting {Movie.Title}");
+    }
 }
 
 @*This component can be used to print the movie title and release date.  Just type 
-<IndividualMovie Movie="nameOfList"*@
+<IndividualMovie Movie="nameOfList"
+
+DisplayButtons parameter is used to receive a value of true or false, if false is
+    passed in then the if statement will not display the buttons, if true then
+    if statement will add delete buttons*@

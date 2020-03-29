@@ -8,9 +8,11 @@ else if (Movies.Count == 0)
 }
 else
 {
+    <input type="checkbox" @onchange="@(() => displayButtons = !displayButtons)"/>
+
     @foreach (var movie in Movies)
     {
-        <IndividualMovie Movie="movie" />
+        <IndividualMovie Movie="movie" DisplayButtons="displayButtons"/>
     }
 
 }
@@ -19,7 +21,7 @@ else
 @code {
 
     [Parameter] public List<Movie> Movies { get; set; }
-
+    bool displayButtons = false;
 
 }
 
@@ -35,4 +37,9 @@ else
         Try adding <MoviesList /> to any other routed page.  E.g /Counter
         The Movies list parameter is used to accept movie properties passed into the MoviesList html
         tag when it is declared on the page <MoviesList Movies="nameOfMovieListItem" />
+
+        DisplayButtons component use.  IndividualMovie component is using the DisplayButtons component
+        It is using the displayButtons boolean variable as the argument.  This argument is then passed
+        to the component and when true/false value is picked up it is used in IndividualMovie if statement
+        to display or not
     *@
