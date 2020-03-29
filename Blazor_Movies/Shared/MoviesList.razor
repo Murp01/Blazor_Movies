@@ -1,18 +1,33 @@
 ﻿@if (Movies == null)
 {
-    <img src="https://media.giphy.com/media/Hzx59OElruHpC/giphy.gif" />
+    @if (NullTemplate != null)
+    {
+        @NullTemplate
+    }
+    else
+    {
+        <img src="https://media.giphy.com/media/Hzx59OElruHpC/giphy.gif" />
+    }
 }
 else if (Movies.Count == 0)
 {
-    <textarea>There are no movies in the database</textarea>
+    @if (EmptyTemplate != null)
+    {
+        @EmptyTemplate
+    }
+    else
+    {
+        <textarea>There are no movies in the database</textarea>
+    }
+    
 }
 else
 {
-    <input type="checkbox" @bind="displayButtons"/>
+    <input type="checkbox" @bind="displayButtons" />
 
     @foreach (var movie in Movies)
     {
-        <IndividualMovie Movie="movie" DisplayButtons="displayButtons" DeleteMovie="DeleteMovie"/>
+        <IndividualMovie Movie="movie" DisplayButtons="displayButtons" DeleteMovie="DeleteMovie" />
     }
 
 }
@@ -21,6 +36,9 @@ else
 @code {
 
     [Parameter] public List<Movie> Movies { get; set; }
+    [Parameter] public RenderFragment NullTemplate { get; set; }
+    [Parameter] public RenderFragment EmptyTemplate { get; set; }
+
     bool displayButtons = true;
 
     private void DeleteMovie(Movie movie)
@@ -47,4 +65,4 @@ else
         It is using the displayButtons boolean variable as the argument.  This argument is then passed
         to the component and when true/false value is picked up it is used in IndividualMovie if statement
         to display or not
-    *@
+*@
