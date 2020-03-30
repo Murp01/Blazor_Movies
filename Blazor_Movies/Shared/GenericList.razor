@@ -1,0 +1,44 @@
+﻿@typeparam TItem
+
+@if (List == null)
+{
+    @if (NullTemplate != null)
+    {
+        @NullTemplate
+    }
+    else
+    {
+        <img src="https://media.giphy.com/media/Hzx59OElruHpC/giphy.gif" />
+    }
+}
+else if (List.Count == 0)
+{
+    @if (EmptyTemplate != null)
+    {
+        @EmptyTemplate
+    }
+    else
+    {
+        <textarea>There are no movies in the database</textarea>
+    }
+
+}
+else
+{
+
+
+    @foreach (var element in List)
+    {
+        @ElementTemplate(element)
+    }
+
+}
+
+@code {
+
+    [Parameter] public RenderFragment NullTemplate { get; set; }
+    [Parameter] public RenderFragment EmptyTemplate { get; set; }
+    [Parameter] public RenderFragment<TItem> ElementTemplate { get; set; }
+    [Parameter] public List<TItem> List { get; set; }
+
+}
