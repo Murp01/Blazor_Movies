@@ -8,9 +8,9 @@
     @*The below tag uses MoviesList component and makes use of the Movies parameter to pass in
     the below movies list as the argument*@
     <MoviesList Movies="movies"/>
-
-
 </div>
+
+<button @onclick="AddNewMovie">Add new movie</button>
 
 <div>
     <h2>Create a Movie</h2>
@@ -33,9 +33,10 @@
         {"disabled", "true" }
     };
 
-    protected async override Task OnInitializedAsync()
+    //protected async override Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        await Task.Delay(3000);
+        //await Task.Delay(3000);
 
         movies = new List<Movie>()
         {
@@ -43,6 +44,12 @@
             new Movie(){Title = "Dredd", ReleaseDate = new DateTime(2011, 6, 4)},
             new Movie(){Title = "He-Man", ReleaseDate = new DateTime(1989, 2, 4)},
         };
+    }
+
+
+    private void AddNewMovie()
+    {
+        movies.Add(new Movie() { Title = "Movie Sample", ReleaseDate = DateTime.Today });
     }
 
 }
